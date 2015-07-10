@@ -1,0 +1,73 @@
+<html>
+<head>
+	<style>
+	body
+	{
+		font-family: "Comic Sans MS";
+		background: #f5f58f;
+	}
+	canvas
+	{
+		border: solid 1px #000000;
+		border-radius: 5px;
+	}
+	div.debug_window
+	{
+		position: absolute;
+		border: solid 1px #000;
+		left: 930px;
+		top: 145px;
+	}
+	div.debug_tile_window
+	{
+		position:absolute;
+		border: solid 1px #000;
+		left: 930px;
+		top: 300px;
+	}
+	div.debug_row
+	{
+		display: table-row;
+		border: none;
+		width: 200px;
+		height: 16px;
+	}
+	span.debug_title_cell
+	{
+		display: table-cell;
+		font-weight: bold;
+		width: 50px;
+		height: 16px;
+		border-left: solid 1px #000;
+		border-top: solid 1px #000;
+		border-bottom: solid 1px #000;
+	}
+	span.debug_value_cell
+	{
+		display: table-cell;
+		font-weight: normal;
+		width: 150px;
+		height: 16px;
+		border-left: solid 1px #000;
+		border-right: solid 1px #000;
+		border-top: solid 1px #000;
+		border-bottom: solid 1px #000;
+	}
+	p.tip
+	{
+		font-weight: normal;
+		font-size: 9pt;
+	}
+	</style>
+	<title>PacDoge!</title>
+	<script src="PacDoge.js" language="javascript" type="text/javascript">
+	</script>
+</head>
+<body onload="do_init();">
+	<h1>PacDoge</h1>
+	<p>Such Pac. Very coin. Such doge.</p>
+	<p>Many arrow keys for move.</p>
+	<canvas width="900" height="550"></canvas>
+	<p class="tip">Tip a shibe: DSMS6S9SK1DrTimgee9mSdkMu2NYwVPYMV</p>
+</body>
+</html>
