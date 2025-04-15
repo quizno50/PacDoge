@@ -209,6 +209,10 @@ function SpaceBarFullScreenAnimation(tgtObj, text, subtext)
 		BlockingAnimation.prototype.processNextFrame.call(this);
 		this.textLocale = (this.tgtObj.height / 4)
 				* Math.cos(this.frameCount / 50) + (this.tgtObj.height / 2);
+		const gps = navigator.getGamepads();
+		if (gps.length > 0 && gps[0].buttons[0].pressed) {
+			this.done = true;
+		}
 	}
 
 	this.render = function(ctx)
@@ -627,7 +631,7 @@ function Ghost()
 					u_i = i;
 				}
 			}
-			// debug_path_map_plot(u_i);
+			//debug_path_map_plot(u_i);
 			var u = p.map.data[u_i];
 			Q[u_i] = 0;
 			if (this.distance[u_i] == 999999) break;
@@ -817,6 +821,16 @@ function Player()
 
 	this.process = function()
 	{
+		const gps = navigator.getGamepads();
+
+		if (gps.length > 0) {
+			const gp = gps[0];
+			if (gp.axes[0] < -0.5) this.next_direction = DIRECTION_LEFT;
+			else if (gp.axes[0] > 0.5) this.next_direction = DIRECTION_RIGHT;
+			else if (gp.axes[1] < -0.5) this.next_direction = DIRECTION_UP;
+			else if (gp.axes[1] > 0.5) this.next_direction = DIRECTION_DOWN;
+		}
+
 		// Process power pill.
 		if (this.power)
 		{
@@ -953,6 +967,9 @@ function PacDoge()
 		for (var i = 0; i < 4; ++i)
 		{
 			this.ghosts[i].render(this.canvas);
+			/* Uncomment to draw path of the ghosts. For debugging ;-)
+			this.ghosts[i].draw_current_path();
+			*/
 		}
 		for (var i = 0; i < this.animations.length; ++i)
 		{
